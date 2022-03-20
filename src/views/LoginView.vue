@@ -12,6 +12,7 @@
                 <div class="userInfo">
                     <v-text-field
                         clearable
+                        color="orange orange-darken-4"
                         label="ID"
                         p-10
                         v-model="info.id"
@@ -22,6 +23,7 @@
                         label="PW"
                         name="input-10-2"
                         v-model="info.pw"
+                        color="orange orange-darken-4"
                         hint="At least 8 characters"
                         class="input-group--focused"
                         :append-icon="pwShow ? 'mdi-eye' : 'mdi-eye-off'"
@@ -30,7 +32,7 @@
                         @click:append="pwShow = !pwShow"
                     ></v-text-field>
                     <v-btn
-                        color="primary"
+                        color="orange orange-darken-4"
                         outlined
                         plain
                         block
@@ -41,13 +43,12 @@
                             <v-btn
                                 v-for="i in icons"
                                 elevation="2"
-                                fab
                                 icon
-                                class="ma-3"
+                                class="ma-2"
                                 x-large
                                 :key="i.id"
                                 @click="oAuthLogin(i)"
-                            ><font-awesome-icon class="fa-2x" :icon="i.class" /></v-btn>
+                            ><font-awesome-icon :icon="i.class" /></v-btn>
                         </v-flex>
                     </v-row>
                     </div>
