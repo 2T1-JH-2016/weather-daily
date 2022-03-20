@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <v-app>
-      <nav>
-        <router-link to="/">Diary</router-link> |
-        <router-link to="/login">Login</router-link>
-      </nav>
       <v-main>
-        <router-view/>
+        <v-content class="mt-3">
+          <router-view/>
+        </v-content>
       </v-main>
     </v-app>
   </div>
