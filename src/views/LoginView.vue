@@ -45,6 +45,7 @@
                                 elevation="2"
                                 icon
                                 class="ma-2"
+                                :style="i.color"
                                 x-large
                                 :key="i.id"
                                 @click="oAuthLogin(i)"
@@ -90,10 +91,10 @@
         pw : ''
       },
       icons:[
-          {id : "twitter", class: "fa-brands fa-twitter"},
-          {id : "facebook", class: "fa-brands fa-facebook"},
-          {id : "google", class: "fa-brands fa-google"},
-          {id : "apple", class: "fa-brands fa-apple"},
+          {id : "twitter", class: "fa-brands fa-twitter", color:"color:#1DA1F2"},
+          {id : "facebook", class: "fa-brands fa-facebook", color:"color:#4267B2"},
+          {id : "google", class: "fa-brands fa-google", color:"color:#4285F4"},
+          {id : "apple", class: "fa-brands fa-apple", color:"color:#A2AAAD"},
       ]
     }),
     methods : {
