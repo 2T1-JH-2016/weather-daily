@@ -100,7 +100,7 @@
     methods : {
       loginEvnet : function() {
         if(this.validEmailCheck(this.info.id) && this.info.pw.length > 7)
-          this.alertPopup = true
+          this.$router.push("/write");
       },
       validEmailCheck: function(value){
         var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
