@@ -99,8 +99,8 @@
     }),
     methods : {
       loginEvnet : function() {
-        if(this.validEmailCheck(this.info.id) && this.info.pw.length > 7)
-          this.$router.push("/write");
+        // if(this.validEmailCheck(this.info.id) && this.info.pw.length > 7)
+          this.$router.push("/diary");
       },
       validEmailCheck: function(value){
         var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
