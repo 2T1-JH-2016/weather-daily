@@ -68,7 +68,7 @@
                 author : '이태원',
                 title : 'asdgasdgasdg',
                 content : 'asdgasdgsagasdg',
-            }
+            },
         }),
         methods : {
             updateDate:function(date){
@@ -99,6 +99,24 @@
             }
         },
         computed:{
+        },
+        created(){
+            //location 받아오기
+            var vm = this
+
+            function onGeoOk(position){
+                // const lat = position.coords.latitude;
+                // const lat = position.coords.latitude;
+                vm.diary.location = position.coords.longitude+', '+position.coords.longitude;
+                console.table(position.coords)
+                // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+            }
+
+            function onGeoError(){
+                vm.diary.location ="Can't find you. No location for you.";
+            }
+
+            navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
         }
     }
 </script>
