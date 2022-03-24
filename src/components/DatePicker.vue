@@ -18,18 +18,20 @@
       v-model="date"
       no-title
       scrollable
+      v-if="!disabled"
+      color="orange lighten-1"
       >
       <v-spacer></v-spacer>
       <v-btn
           text
-          color="primary"
+          color="orange"
           @click="menu = false"
       >
           Cancel
       </v-btn>
       <v-btn
           text
-          color="primary"
+          color="orange"
           @click="$refs.menu.save(date)"
       >
           OK
@@ -45,6 +47,10 @@
       value : {
         type : String,
         required : true
+      },
+      disabled : {
+        type : Boolean,
+        default : false
       }
     },
     data: () => ({
