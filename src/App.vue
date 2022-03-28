@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <v-main>
-        <v-content class="mt-3">
+        <v-content class="mt-3 d-flex justify-center align-center" style="height:90%">
           <router-view/>
         </v-content>
       </v-main>
