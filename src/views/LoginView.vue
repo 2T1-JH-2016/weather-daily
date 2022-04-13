@@ -1,6 +1,6 @@
 <template>
     <v-content>
-        <v-container>
+      <v-container>
             <v-row>
                 <v-col cols="12"><h1>날씨일기</h1></v-col>
             </v-row>
@@ -18,11 +18,12 @@
                         v-model="info.id"
                         hide-details="auto"
                         :rules="[rules.required,rules.emailRules]"
+                        @keydown="info.path='email'"
                     ></v-text-field>
                     <v-text-field
                         label="PW"
                         name="input-10-2"
-                        v-model="info.pw"
+                        v-model="pw"
                         color="orange orange-darken-4"
                         hint="At least 8 characters"
                         class="input-group--focused"
@@ -30,6 +31,7 @@
                         :rules="[rules.required, rules.min]"
                         :type="pwShow ? 'text' : 'password'"
                         @click:append="pwShow = !pwShow"
+                        @keydown="info.path='email'"
                     ></v-text-field>
                     <v-btn
                         color="orange orange-darken-4"
@@ -48,34 +50,20 @@
                                 :style="i.color"
                                 x-large
                                 :key="i.id"
-                                @click="oAuthLogin(i)"
+                                @click="info.path=i.id;oAuthLogin(i)"
                             ><font-awesome-icon :icon="i.class" /></v-btn>
                         </v-flex>
                     </v-row>
                     </div>
                 </v-col>
             </v-row>
-            <!-- 스토어 저장 후 삭제 -->
-            <v-alert
-                border="top"
-                colored-border
-                type="info"
-                elevation="2"
-                class="userInfo text-left"
-                v-if="alertPopup"
-                @click="alertPopup=false"
-            >
-                <p>ID : {{info.id}}</p>
-                <p>PW : {{info.pw}}</p>
-                store 에 계정 저장
-            </v-alert>
-            <!-- //스토어 저장 후 삭제 -->
             New to Diary? <a @click="sginInPopup=true">Create an account.</a>
-        </v-container>
+      </v-container>
     </v-content>
 </template>
   
 <script>
+import { mapActions, mapGetters } from 'vuex';
   export default {
     data: () => ({
       rules: {
@@ -86,21 +74,26 @@
       pwShow : false,
       alertPopup : false,
       sginInPopup : false,
-      info : {
-        id : '',
-        pw : ''
-      },
       icons:[
           {id : "twitter", class: "fa-brands fa-twitter", color:"color:#1DA1F2"},
           {id : "facebook", class: "fa-brands fa-facebook", color:"color:#4267B2"},
           {id : "google", class: "fa-brands fa-google", color:"color:#4285F4"},
           {id : "apple", class: "fa-brands fa-apple", color:"color:#A2AAAD"},
-      ]
+      ],
+      pw : ''
     }),
+    computed :{
+      ...mapGetters({ info : 'getUserInfo'})
+    },
     methods : {
+      ...mapActions(['setUserInfo']),
       loginEvnet : function() {
         // if(this.validEmailCheck(this.info.id) && this.info.pw.length > 7)
           this.$router.push("/diary");
+          let user_info = {
+            id : this.info.id
+          }
+          this.setUserInfo(user_info);
       },
       validEmailCheck: function(value){
         var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
